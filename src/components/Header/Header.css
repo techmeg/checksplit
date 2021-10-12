@@ -1,0 +1,17 @@
+.header {
+    margin-bottom: .5rem;
+  }
+
+.logo {
+border: 2px solid var(--color-text);
+border-radius: var(--radius);
+color: var(--color-text);
+font-size: 1.5rem;
+margin-bottom: 2rem;
+padding: .5rem;
+width: 85px;
+}
+  
+a {
+    text-decoration: none;
+}

@@ -1,0 +1,31 @@
+@media (min-width: 430px){
+    .check {
+        display: grid;
+        grid-template-columns: 200px 200px;
+        justify-items: center;
+        place-content: center;
+    }
+}
+
+.form_group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    max-width: 300px;
+}
+label {
+    color: var(--color-accent);
+    font-size: .825rem;
+    text-transform: uppercase;
+}
+input {
+    background-color: var(--color-text);
+    border: 1px solid var(--color-text);
+    border-radius: var(--radius);
+    color: var(--color-bg);
+    display: block;
+    margin-right: 10px;
+    margin-top: .5rem;
+    padding: .5rem;
+}
+
