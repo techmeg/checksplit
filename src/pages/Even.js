@@ -5,8 +5,8 @@ function Even() {
 
     const [checkData, setCheckData] = useState({total: '', diners: '', tip: ''})
     const [splitAmount, setSplitAmount] = useState(0);
+    const result = `The amount each diner owes is: $${splitAmount.toFixed(2)} .`
 
-    
     function handleChange(event){
         const {name, value} = event.target
         setCheckData(prevCheckData => {
@@ -15,14 +15,28 @@ function Even() {
                 [name]: value
             }
         })
-        console.log(event.target)
     }
     function calculateSplit(event) {
         event.preventDefault()
         const {total, diners, tip} = checkData;
         setSplitAmount(prevSplit => prevSplit + (total * (tip/100 + 1) / diners))
+        resetData()
+        return splitAmount;
     }
-    console.log(splitAmount)
+
+    function resultMessage(){
+        if(splitAmount) {
+            return result
+        }
+    }
+
+    function resetData(){
+        setCheckData({total: '', diners: '', tip: ''})
+        
+        // console.log(checkData)
+        return checkData
+        }
+    
     return (
         <div>
             <h1>Split Even Steven</h1>
@@ -48,8 +62,9 @@ function Even() {
                     <Button onClick={calculateSplit}value="Calculate Split"/>
                 </div>
             </form>
+            <div>{resultMessage()}</div>
             
-    
+               
         </div>
         )
 
