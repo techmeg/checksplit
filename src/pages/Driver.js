@@ -5,7 +5,7 @@ function Driver() {
     const [checkData, setCheckData] = useState({total: '', bar: '', diners: '', tip: ''})
     const [splitAmounts, setSplitAmounts] = useState({driverAmount: 0, drinkerAmount: 0, tip: 0, totalPlusTip: 0});
     let totalPlusTip = 0;
-    const result = `Total with ${splitAmounts.tip}% tip is $${splitAmounts.totalPlusTip.toFixed(0)}. The designated driver owes: $${splitAmounts.driverAmount.toFixed(0)}. The remaining diners owe $${splitAmounts.drinkerAmount.toFixed(0)}`
+    const result = `Total with ${splitAmounts.tip}% tip is $${splitAmounts.totalPlusTip.toFixed(0)}. The designated driver owes: $${splitAmounts.driverAmount.toFixed(0)}. The remaining diners owe $${splitAmounts.drinkerAmount.toFixed(0)}.`
 
     function handleChange(event){
         const {name, value} = event.target
@@ -38,7 +38,9 @@ function Driver() {
     }
 
     function resultMessage(){
-        if(splitAmounts.drinkerAmount) {
+        if(!splitAmounts.drinkerAmount) {
+            return `Enter numbers in all fields. If tip is already included, enter 0 as tip percent.`
+        } else {
             return result
         }
     }
@@ -53,28 +55,30 @@ function Driver() {
     return (
         <div>
             <h1>Designated Driver</h1>
-            <p>Enter the Total Check amount, the bar bill (if not separated on the check -- estimate!), the number of diners (including driver) and desired tip percentage.</p>
+            <p>Excuse the DD from participating in paying for drinks. If the bar portion is not indicated on the check, estimate.</p>
             
-            <form onSubmit={calculateSplit} className="check">
-            <div className="form_group">
-                <label >Total Check
-                    <input type="number" name="total" onChange={handleChange} value={checkData.total}/>
-                </label>
-                </div>
-                <div className="form_group">
-                <label >Bar Amount
-                    <input type="number" name="bar" onChange={handleChange} value={checkData.bar}/>
-                </label>
-                </div>
-                <div className="form_group">
-                <label >Number of Diners
-                    <input type="number" name="diners" onChange={handleChange} value={checkData.diners} />
-                </label>
-                </div>
-                <div className="form_group">
-                <label >Tip %
-                    <input type="number" name="tip" onChange={handleChange} value={checkData.tip} />
-                </label>
+            <form onSubmit={calculateSplit} >
+                <div className="checkGrid">
+                    <div className="form_group">
+                        <label >Total Check
+                            <input type="number" name="total" onChange={handleChange} value={checkData.total}/>
+                        </label>
+                    </div>
+                    <div className="form_group">
+                        <label >Bar Amount
+                            <input type="number" name="bar" onChange={handleChange} value={checkData.bar}/>
+                        </label>
+                    </div>
+                    <div className="form_group">
+                        <label ># Diners
+                            <input type="number" name="diners" onChange={handleChange} value={checkData.diners} />
+                        </label>
+                    </div>
+                    <div className="form_group">
+                        <label >Tip %
+                            <input type="number" name="tip" onChange={handleChange} value={checkData.tip} />
+                        </label>
+                    </div>
                 </div>
                 <div id="calculate">
                     <Button onClick={calculateSplit}value="Calculate Split"/>

@@ -30,7 +30,6 @@ function Kids() {
         const adultshare = kidshare*2;
 
         setSplitAmounts(prevSplit => {
-
             return {
                 kidshare: prevSplit.kidshare + kidshare,
                 adultshare: prevSplit.adultshare + adultshare,
@@ -45,7 +44,7 @@ function Kids() {
 
     function resultMessage(){
         if(!splitAmounts.adultshare) {
-            return `Enter numbers in all fields`
+            return `Enter numbers in all fields. If tip is already included, enter 0 as tip percent.`
         } else {
             return result
         }
@@ -61,35 +60,37 @@ function Kids() {
     return (
         <div>
             <h1>Kids Pay Half</h1>
-            <p>Enter the Total Check amount, the number of kids and adults and desired tip percentage.</p>
+            <p>Maybe half is not a perfect reflection of the bill, but go with it.</p>
             
-            <form onSubmit={calculateSplit} className="check">
-            <div className="form_group">
-                <label >Total Check
-                    <input type="number" name="total" onChange={handleChange} value={checkData.total} required/>
-                </label>
-                </div>
-                <div className="form_group">
-                <label >Number of Kids
-                    <input type="number" name="kids" onChange={handleChange} value={checkData.kids} min="1" required/>
-                </label>
-                </div>
-                <div className="form_group">
-                <label >Number of Adults
-                    <input type="number" name="adults" onChange={handleChange} value={checkData.adults} min="1" required />
-                </label>
-                </div>
-                <div className="form_group">
-                <label >Tip %
-                    <input type="number" name="tip" onChange={handleChange} value={checkData.tip} />
-                </label>
+            <form onSubmit={calculateSplit}>
+                <div className="checkGrid">
+                    <div className="form_group">
+                        <label >Total Check
+                            <input type="number" name="total" onChange={handleChange} value={checkData.total} required/>
+                        </label>
+                    </div>
+                    <div className="form_group">
+                        <label >#  Kids
+                            <input type="number" name="kids" onChange={handleChange} value={checkData.kids} min="1" required/>
+                        </label>
+                    </div>
+                    <div className="form_group">
+                        <label ># Adults
+                            <input type="number" name="adults" onChange={handleChange} value={checkData.adults} min="1" required />
+                        </label>
+                    </div>
+                    <div className="form_group">
+                        <label >Tip %
+                            <input type="number" name="tip" onChange={handleChange} value={checkData.tip} />
+                        </label>
+                    </div>
                 </div>
                 <div id="calculate">
                     <Button onClick={calculateSplit}value="Calculate Split"/>
                 </div>
             </form>
-            <div>{resultMessage()}</div>
-            
+            <p>{resultMessage()}</p>
+
                
         </div>
         )

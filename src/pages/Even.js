@@ -4,8 +4,8 @@ import {useState} from 'react';
 function Even() {
 
     const [checkData, setCheckData] = useState({total: '', diners: '', tip: ''})
-    const [splitAmount, setSplitAmount] = useState(0);
-    const result = `The amount each diner owes is: $${splitAmount.toFixed(2)} .`
+    const [splitAmounts, setSplitAmounts] = useState({evenSplit: 0, tip: 0, totalPlusTip: 0});
+    const result = `The total with ${splitAmounts.tip}% tip is $${splitAmounts.totalPlusTip.toFixed(0)}. The amount each diner owes is: $${splitAmounts.evenSplit.toFixed(0)} .`
 
     function handleChange(event){
         const {name, value} = event.target
@@ -18,14 +18,26 @@ function Even() {
     }
     function calculateSplit(event) {
         event.preventDefault()
-        const {total, diners, tip} = checkData;
-        setSplitAmount(prevSplit => prevSplit + (total * (tip/100 + 1) / diners))
+        let {total, diners, tip} = checkData;
+        if(tip === ''){
+            tip = 0;
+        }
+        const totalPlusTip = (total * (tip/100 + 1))
+        setSplitAmounts(prevSplit => {
+            return {
+                evenSplit: prevSplit.evenSplit + totalPlusTip/diners,
+                tip: tip,
+                totalPlusTip: totalPlusTip
+            }
+        })
         resetData()
-        return splitAmount;
+        return splitAmounts;
     }
 
     function resultMessage(){
-        if(splitAmount) {
+        if(!splitAmounts.evenSplit) {
+            return `Enter numbers in all fields`
+        } else  {
             return result
         }
     }
@@ -40,29 +52,31 @@ function Even() {
     return (
         <div>
             <h1>Split Even Steven</h1>
-            <p>Enter the Total Check amount, the number of diners and the percentage to tip below.</p>
+            <p>Split the check evenly among all diners.</p>
             
-            <form onSubmit={calculateSplit} className="check">
-                <div className="form_group">
-                <label >Total Check
-                    <input type="number" name="total" onChange={handleChange} value={checkData.total}/>
-                </label>
-                </div>
-                <div className="form_group">
-                <label >Diners
-                    <input type="number" name="diners" onChange={handleChange} value={checkData.diners} />
-                </label>
-                </div>
-                <div className="form_group">
-                <label >Tip %
-                    <input type="number" name="tip" onChange={handleChange} value={checkData.tip} />
-                </label>
+            <form onSubmit={calculateSplit} >
+                <div className="checkGrid">
+                    <div className="form_group">
+                    <label >Total Check
+                        <input type="number" name="total" onChange={handleChange} value={checkData.total}/>
+                    </label>
+                    </div>
+                    <div className="form_group">
+                    <label >Diners
+                        <input type="number" name="diners" onChange={handleChange} value={checkData.diners} />
+                    </label>
+                    </div>
+                    <div className="form_group">
+                    <label >Tip %
+                        <input type="number" name="tip" onChange={handleChange} value={checkData.tip} />
+                    </label>
+                    </div>
                 </div>
                 <div id="calculate">
                     <Button onClick={calculateSplit}value="Calculate Split"/>
                 </div>
             </form>
-            <div>{resultMessage()}</div>
+            <div className="message">{resultMessage()}</div>
             
                
         </div>
