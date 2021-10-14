@@ -36,7 +36,7 @@ function Even() {
 
     function resultMessage(){
         if(!splitAmounts.evenSplit) {
-            return `Enter numbers in all fields`
+            return `Enter numbers in all fields. If tip is already included, enter 0 as tip percent.`
         } else  {
             return result
         }
@@ -50,7 +50,7 @@ function Even() {
         }
     
     return (
-        <div>
+        <main className="mobile-width">
             <h1>Split Even Steven</h1>
             <p>Split the check evenly among all diners.</p>
             
@@ -77,9 +77,8 @@ function Even() {
                 </div>
             </form>
             <div className="message">{resultMessage()}</div>
-            
-               
-        </div>
+
+        </main>
         )
 
 }

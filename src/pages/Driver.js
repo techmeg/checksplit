@@ -53,7 +53,7 @@ function Driver() {
         }
     
     return (
-        <div>
+        <main className="mobile-width">
             <h1>Designated Driver</h1>
             <p>Excuse the DD from participating in paying for drinks. If the bar portion is not indicated on the check, estimate.</p>
             
@@ -87,7 +87,7 @@ function Driver() {
             <div>{resultMessage()}</div>
             
                
-        </div>
+        </main>
         )
 
 }
