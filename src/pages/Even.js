@@ -22,7 +22,8 @@ function Even() {
         if(tip === ''){
             tip = 0;
         }
-        const totalPlusTip = (total * (tip/100 + 1))
+        const totalPlusTip = (total * (tip/100 + 1));
+
         setSplitAmounts(prevSplit => {
             return {
                 evenSplit: prevSplit.evenSplit + totalPlusTip/diners,
@@ -30,8 +31,8 @@ function Even() {
                 totalPlusTip: totalPlusTip
             }
         })
-        resetData()
         return splitAmounts;
+        // return splitAmounts;
     }
 
     function resultMessage(){
@@ -44,7 +45,7 @@ function Even() {
 
     function resetData(){
         setCheckData({total: '', diners: '', tip: ''})
-        
+        setSplitAmounts({tip: 0, totalPlusTip: 0, evenSplit: 0})
         // console.log(checkData)
         return checkData
         }
@@ -73,10 +74,14 @@ function Even() {
                     </div>
                 </div>
                 <div id="calculate">
-                    <Button onClick={calculateSplit}value="Calculate Split"/>
+                    <Button theme="btn" onClick={calculateSplit}value="Calculate Split"/>
                 </div>
             </form>
-            <div className="message">{resultMessage()}</div>
+            <div className="message">{resultMessage()}
+            </div>
+            <div >
+            <Button  theme="reset" onClick={resetData} value="Reset"/>
+            </div>
 
         </main>
         )

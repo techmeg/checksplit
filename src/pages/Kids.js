@@ -86,11 +86,13 @@ function Kids() {
                     </div>
                 </div>
                 <div id="calculate">
-                    <Button onClick={calculateSplit}value="Calculate Split"/>
+                    <Button theme="btn" onClick={calculateSplit}value="Calculate Split"/>
                 </div>
             </form>
-            <p>{resultMessage()}</p>
-
+            <p className="message">{resultMessage()}</p>
+            <div >
+            <Button  theme="reset" onClick={resetData} value="Reset"/>
+            </div>
                
         </main>
         )

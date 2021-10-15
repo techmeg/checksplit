@@ -81,11 +81,13 @@ function Driver() {
                     </div>
                 </div>
                 <div id="calculate">
-                    <Button onClick={calculateSplit}value="Calculate Split"/>
+                    <Button theme="btn" onClick={calculateSplit} value="Calculate Split"/>
                 </div>
             </form>
-            <div>{resultMessage()}</div>
-            
+            <div className="message">{resultMessage()}</div>
+            <div >
+            <Button  theme="reset" onClick={resetData} value="Reset"/>
+            </div>
                
         </main>
         )

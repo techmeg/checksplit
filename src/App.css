@@ -56,17 +56,21 @@ li {
   margin-right: 5px;
   padding: 0.5rem 1rem;
 }
-form, .checkGrid {
+form, .checkGrid, .message {
   margin-bottom: 1rem;
 }
 .mobile-width {
+  padding: 1rem;
   width: 320px;
 }
 .checkGrid {
-  display: grid;
-  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: space-between;
+  /* gap: 1rem;
   grid-template-columns: 135px 135px;
-  place-content: center;
+  place-content: center; */
 }
 
 .form_group {
@@ -89,7 +93,7 @@ input {
   display: block;
   margin-right: 10px;
   margin-top: .5rem;
-  max-width: 135px;
+  max-width: 130px;
   padding: .5rem;
 }
 #calculate {
@@ -98,4 +102,14 @@ input {
 }
 .message {
   text-align: center;
+}
+.reset {
+  background-color: var(--color-bg);
+  border:  2px solid var(--color-accent);
+  border-radius: var(--radius);
+  color: var(--color-accent);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-right: 5px;
+  padding: 0.5rem 1rem;
 }
