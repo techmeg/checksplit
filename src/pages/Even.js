@@ -1,21 +1,15 @@
 import Button from '../components/Button/Button'
-import {useState} from 'react';
+import {useState, useContext} from 'react';
+import {Context} from '../Context'
 
 function Even() {
 
-    const [checkData, setCheckData] = useState({total: '', diners: '', tip: ''})
+    const {checkData, handleChange, resetCheckData} = useContext(Context);
+
     const [splitAmounts, setSplitAmounts] = useState({evenSplit: 0, tip: 0, totalPlusTip: 0});
     const result = `The total with ${splitAmounts.tip}% tip is $${splitAmounts.totalPlusTip.toFixed(0)}. The amount each diner owes is: $${splitAmounts.evenSplit.toFixed(0)} .`
 
-    function handleChange(event){
-        const {name, value} = event.target
-        setCheckData(prevCheckData => {
-            return {
-                ...prevCheckData,
-                [name]: value
-            }
-        })
-    }
+
     function calculateSplit(event) {
         event.preventDefault()
         let {total, diners, tip} = checkData;
@@ -32,7 +26,6 @@ function Even() {
             }
         })
         return splitAmounts;
-        // return splitAmounts;
     }
 
     function resultMessage(){
@@ -44,7 +37,7 @@ function Even() {
     }
 
     function resetData(){
-        setCheckData({total: '', diners: '', tip: ''})
+        resetCheckData()
         setSplitAmounts({tip: 0, totalPlusTip: 0, evenSplit: 0})
         // console.log(checkData)
         return checkData

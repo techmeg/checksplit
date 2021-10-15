@@ -1,27 +1,20 @@
 import Button from '../components/Button/Button'
-import {useState} from 'react';
+import {useContext, useState} from 'react';
+import {Context} from '../Context'
 
 function Driver() {
-    const [checkData, setCheckData] = useState({total: '', bar: '', diners: '', tip: ''})
+    const {checkData, handleChange, resetCheckData} = useContext(Context)
+
     const [splitAmounts, setSplitAmounts] = useState({driverAmount: 0, drinkerAmount: 0, tip: 0, totalPlusTip: 0});
-    let totalPlusTip = 0;
     const result = `Total with ${splitAmounts.tip}% tip is $${splitAmounts.totalPlusTip.toFixed(0)}. The designated driver owes: $${splitAmounts.driverAmount.toFixed(0)}. The remaining diners owe $${splitAmounts.drinkerAmount.toFixed(0)}.`
 
-    function handleChange(event){
-        const {name, value} = event.target
-        setCheckData(prevCheckData => {
-            return {
-                ...prevCheckData,
-                [name]: value
-            }
-        })
-    }
+
     function calculateSplit(event) {
         event.preventDefault()
         const {total, bar, diners, tip} = checkData;
         const totalFood = total-bar ;
         const driverAmount = (totalFood/diners) * (tip/100 + 1);
-        totalPlusTip = total * (tip/100 + 1);
+        const totalPlusTip = total * (tip/100 + 1);
         const drinkerAmount = (totalPlusTip-driverAmount) / (diners-1);
 
         setSplitAmounts(prevSplit => {
@@ -32,8 +25,6 @@ function Driver() {
                 totalPlusTip: totalPlusTip
             }
         })
-            
-        resetData()
         return splitAmounts;
     }
 
@@ -46,7 +37,8 @@ function Driver() {
     }
 
     function resetData(){
-        setCheckData({total: '', bar: '', diners: '', tip: ''})
+        resetCheckData()
+        setSplitAmounts({driverAmount: 0, drinkerAmount: 0, tip: 0, totalPlusTip: 0})
         
         // console.log(checkData)
         return checkData

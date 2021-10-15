@@ -1,30 +1,21 @@
 import Button from '../components/Button/Button'
-import {useState} from 'react';
+import {useContext, useState} from 'react';
+import {Context} from '../Context'
 
 function Kids() {
 
-    const [checkData, setCheckData] = useState({total: '', kids: '',  adults: '', tip: ''})
+    const {checkData, handleChange, resetCheckData} = useContext(Context);
+
     const [splitAmounts, setSplitAmounts] = useState({kidshare: 0, adultshare: 0, tip: 0, totalPlusTip: 0});
-    let totalPlusTip = 0;
     const result = `Total with ${splitAmounts.tip}% tip is $${splitAmounts.totalPlusTip.toFixed(0)}. A kid share is: $${splitAmounts.kidshare.toFixed(0)}. The adults each owe $${splitAmounts.adultshare.toFixed(0)}`
 
-    function handleChange(event){
-        const {name, value} = event.target
-        setCheckData(prevCheckData => {
-            return {
-                ...prevCheckData,
-                [name]: value
-            }
-        })
-    }
     function calculateSplit(event) {
         event.preventDefault()
         let {total, kids, adults, tip} = checkData;
         if(tip === ''){
             tip = 0;
         }
-        console.log(total, kids, adults, tip)
-        totalPlusTip = total * (tip/100 + 1);
+        const totalPlusTip = total * (tip/100 + 1);
         const numberShares = parseInt(adults*2) + parseInt(kids);
         const kidshare = totalPlusTip/numberShares
         const adultshare = kidshare*2;
@@ -36,9 +27,7 @@ function Kids() {
                 tip: tip,
                 totalPlusTip: totalPlusTip
             }
-        })
-            
-        resetData()
+        })            
         return splitAmounts;
     }
 
@@ -51,7 +40,8 @@ function Kids() {
     }
 
     function resetData(){
-        setCheckData({total: '', kids: '', adults: '', tip: ''})
+        resetCheckData()
+        setSplitAmounts({kidshare: 0, adultshare: 0, tip: 0, totalPlusTip: 0})
         
         // console.log(checkData)
         return checkData
