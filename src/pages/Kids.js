@@ -48,7 +48,7 @@ function Kids() {
         }
     
     return (
-        <main className="mobile-width">
+        <main >
             <h1>Kids Pay Half</h1>
             <p>Maybe half is not a perfect reflection of the bill, but go with it.</p>
             

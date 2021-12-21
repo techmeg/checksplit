@@ -58,10 +58,7 @@ li {
 form, .checkGrid, .message {
   margin-bottom: 1rem;
 }
-.mobile-width {
-  padding: 1rem;
-  width: 320px;
-}
+
 .checkGrid {
   display: flex;
   flex-wrap: wrap;

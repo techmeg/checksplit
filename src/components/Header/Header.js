@@ -1,10 +1,10 @@
 import './Header.css'
 import {Link} from 'react-router-dom'
 
-function Header () {
+function Header (props) {
     return(
-        <header className="header">
-        <Link to="/" className="logo">S / $</Link>
+        <header className={props.theme}>
+         <Link to="/" className="logo">S / $</Link>
       </header>
     )
 }

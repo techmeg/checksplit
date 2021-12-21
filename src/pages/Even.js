@@ -44,7 +44,7 @@ function Even() {
         }
     
     return (
-        <main className="mobile-width">
+        <main >
             <h1>Split Even Steven</h1>
             <p>Split the check evenly among all diners.</p>
             

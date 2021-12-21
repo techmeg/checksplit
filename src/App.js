@@ -9,8 +9,8 @@ import Kids from './pages/Kids';
 
 function App() {
   return (
-    <div className="app">
-      <Header />
+    <div className="app mobile-width">
+      <Header theme="header"/>
       <Switch>
         <Route exact path='/'>
           <main>
