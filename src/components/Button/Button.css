@@ -8,4 +8,5 @@
   margin-bottom: calc(var(--spacer) / 2);
   margin-right: 5px;
   padding: 0.5rem 1rem;
+  text-align: center;
 }

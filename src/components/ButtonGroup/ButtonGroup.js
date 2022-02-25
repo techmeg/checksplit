@@ -13,7 +13,7 @@ function ButtonGroup() {
           <Link to='/driver'>Designated Driver</Link>
         </li>
         <li className='btn'>
-          <Link to='/kids'>Kids Half</Link>
+          <Link to='/kids'>Kids Pay Half</Link>
         </li>
       </ul>
     </div>
