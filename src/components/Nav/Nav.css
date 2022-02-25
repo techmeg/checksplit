@@ -1,6 +1,17 @@
 .nav_list {
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
+  display: flex;
 }
-
+.nav_link {
+  margin-left: 0.5rem;
+  width: min-content;
+}
+.nav_link a {
+  color: var(--color-bg);
+  color: darkblue;
+  /* font-size: 0.825rem; */
+  font-weight: 700;
+}
+.nav_link a:hover,
+.nav_link a:focus {
+  color: rgb(243, 235, 6);
+}

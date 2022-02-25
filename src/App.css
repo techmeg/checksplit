@@ -1,11 +1,12 @@
 :root {
   --color-primary: #61dafb;
-  --color-bg: #282c34;
+  --color-bg: darkblue;
   --color-text: blanchedalmond;
   --color-accent: orange;
   --radius: 8px;
+  --spacer: 2rem;
 }
-*, 
+*,
 *::before,
 *::after {
   margin: 0;
@@ -13,18 +14,23 @@
   box-sizing: border-box;
 }
 .app {
-  align-items: center;
-  display: flex;
   background-color: var(--color-bg);
   color: blanchedalmond;
   flex-direction: column;
   line-height: 1.3;
-  padding: 2.5rem 1.5rem;
+  position: relative;
 }
 
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 6vw, 1.5rem);
+}
 
-
-h1{
+h1 {
   color: var(--color-accent);
   font-size: 2rem;
   margin: 1rem 0;
@@ -40,29 +46,41 @@ h2 {
   text-align: center;
 }
 ul {
-  margin: 0 auto 1rem;
-  width: 80%;
+  list-style: none;
 }
 li {
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 }
-.btn {
-  background-color: var(--color-accent);
-  border-radius: var(--radius);
+a {
   color: var(--color-bg);
-  font-size: 1rem;
-  font-weight: 700;
-  margin-right: 5px;
-  padding: 0.5rem 1rem;
+  line-height: 1.1;
+  text-decoration: none;
 }
-form, .checkGrid, .message {
+a:hover,
+a:focus {
+  color: rgb(243, 235, 6);
+  text-decoration: underline;
+}
+
+/*   Utility Classes   */
+.align-left {
+  align-self: start;
+}
+
+.flow > * {
+  margin-bottom: var(--spacer, 1rem);
+}
+
+form,
+.checkGrid,
+.message {
   margin-bottom: 1rem;
 }
 
 .checkGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: .5rem;
+  gap: 0.5rem;
   justify-content: space-between;
   /* gap: 1rem;
   grid-template-columns: 135px 135px;
@@ -76,9 +94,9 @@ form, .checkGrid, .message {
 }
 label {
   color: var(--color-accent);
-  font-size: .825rem;
+  font-size: 0.825rem;
   font-weight: 700;
-  line-height: .8;
+  line-height: 0.8;
   text-transform: uppercase;
 }
 input {
@@ -88,9 +106,9 @@ input {
   color: var(--color-bg);
   display: block;
   margin-right: 10px;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   max-width: 130px;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 #calculate {
   display: flex;
@@ -101,11 +119,102 @@ input {
 }
 .reset {
   background-color: var(--color-bg);
-  border:  2px solid var(--color-accent);
+  border: 2px solid var(--color-accent);
   border-radius: var(--radius);
   color: var(--color-accent);
   font-size: 1rem;
   font-weight: 700;
   margin-right: 5px;
   padding: 0.5rem 1rem;
+}
+
+/* Animation */
+#header {
+  height: 100px;
+  margin-bottom: var(--spacer);
+}
+
+.header-home {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  font-size: 2.5rem;
+  margin: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.rise {
+  animation-name: rise;
+  animation-delay: 0.5s;
+  animation-duration: 1s;
+  padding-block: 3vh;
+  top: 35vh;
+}
+.fade-out {
+  animation-name: fade-out;
+  animation-delay: 1s;
+  animation-duration: 1s;
+}
+
+.fade-in {
+  animation-name: fade-in;
+  animation-delay: 1.5s;
+  animation-duration: 0.5s;
+  font-size: 0.1rem;
+  opacity: 0;
+}
+
+.add-last {
+  animation-name: add-last;
+  animation-delay: 1.5s;
+  opacity: 0;
+}
+
+.rise,
+.fade-in,
+.fade-out,
+.add-last {
+  animation-fill-mode: forwards;
+}
+
+@keyframes rise {
+  0% {
+    font-size: 2.5rem;
+    top: 35vh;
+  }
+  100% {
+    font-size: 2rem;
+    top: 0;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    margin-left: calc(50vw - 7.75rem);
+  }
+  100% {
+    margin-left: 0;
+    opacity: 0;
+    font-size: 0.1rem;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    font-size: 0.1rem;
+    opacity: 0;
+  }
+  100% {
+    font-size: 2rem;
+    opacity: 1;
+  }
+}
+
+@keyframes add-last {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
