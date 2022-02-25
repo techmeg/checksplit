@@ -1,6 +1,4 @@
-.nav_list {
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
+.btn-group {
+  /* display: flex; */
+  list-style-type: none;
 }
-

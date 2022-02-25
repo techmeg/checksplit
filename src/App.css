@@ -48,6 +48,11 @@ h2 {
 ul {
   list-style: none;
 }
+
+.bulleted {
+  list-style: disc;
+  margin-left: 1rem;
+}
 li {
   margin-bottom: 0.25rem;
 }

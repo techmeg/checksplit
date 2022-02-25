@@ -19,27 +19,23 @@ function App() {
             </h1>
           </header>
           <main class='container flow add-last'>
-            <p className='text'>
-              Out for a meal with a big party? Want to split the check but
-              arithmatic was never your strong suit? Here are some options for
-              tailoring your tallies. Just drop in your check details and let
-              the app do the math.
+            <h2 className='text'>Out for a meal with a big party?</h2>
+            <p>
+              Want to split the check but arithmatic was never your strong suit?
+            </p>
+            <p>
+              Here are some options for tailoring your tallies. Just drop in
+              your check details and let the app do the math.
             </p>
 
             <ButtonGroup />
 
-            <p className='text align-left'>Note: this app assumes:</p>
-            <ul>
-              <li>you are among friends and not calculating to the penny.</li>
-              <li>
-                you would prefer the suggested split to be in whole dollar
-                amounts.
-              </li>
-            </ul>
-            <p>
-              Calculating this way results in a small difference ($1-2 either
-              way) in how the shares add up to the tip, due to rounding. If you
-              want exact per person totals, ask your server for separate checks.
+            <p className='text align-left'>
+              <strong>Note:</strong>
+              <ul className='bulleted'>
+                <li>you are among friends and not calculating to the penny.</li>
+                <li>suggested split will be in whole dollar amounts.</li>
+              </ul>
             </p>
             <br />
           </main>

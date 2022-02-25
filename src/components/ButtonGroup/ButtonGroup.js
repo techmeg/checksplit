@@ -2,10 +2,10 @@ import React from "react";
 import "./ButtonGroup.css";
 import { Link } from "react-router-dom";
 
-function Nav() {
+function ButtonGroup() {
   return (
-    <nav className='nav'>
-      <ul className='nav_list'>
+    <div className='btn-group'>
+      <ul className='btn-group'>
         <li className='btn'>
           <Link to='/even'>Even Steven</Link>
         </li>
@@ -16,8 +16,8 @@ function Nav() {
           <Link to='/kids'>Kids Half</Link>
         </li>
       </ul>
-    </nav>
+    </div>
   );
 }
 
-export default Nav;
+export default ButtonGroup;
