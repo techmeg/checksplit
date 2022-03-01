@@ -199,7 +199,7 @@ input {
   100% {
     margin-left: 0;
     opacity: 0;
-    font-size: 0.1rem;
+    font-size: 0.1px;
   }
 }
 
