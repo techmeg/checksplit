@@ -12,13 +12,13 @@ function App() {
       <Switch>
         <Route exact path='/'>
           <header id='header'>
-            <h1 class='header-home rise'>
-              <span class='fade-out'>Split the</span>
+            <h1 className='header-home rise'>
+              <span className='fade-out'>Split the</span>
               <span> Check</span>
-              <span class='fade-in'>/ Split</span>
+              <span className='fade-in'>/ Split</span>
             </h1>
           </header>
-          <main class='container flow add-last'>
+          <main className='container flow add-last'>
             <h2 className='text'>Out for a meal with a big party?</h2>
             <p>
               Want to split the check but arithmatic was never your strong suit?
@@ -30,13 +30,13 @@ function App() {
 
             <ButtonGroup />
 
-            <p className='text align-left'>
+            <div className='text align-left'>
               <strong>Note:</strong>
               <ul className='bulleted'>
                 <li>you are among friends and not calculating to the penny.</li>
                 <li>suggested split will be in whole dollar amounts.</li>
               </ul>
-            </p>
+            </div>
             <br />
           </main>
         </Route>

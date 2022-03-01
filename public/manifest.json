@@ -18,9 +18,10 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "orientation": "portrait-primary"
+  "start_url": ".",
+  "display": "minimal-ui",
+  "theme_color": "blanchedalmond",
+  "background_color": "darkblue",
+  "orientation": "portrait-primary",
+  "description": "divide restaurant check"
 }
