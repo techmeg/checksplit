@@ -15,7 +15,7 @@ function App() {
             <h1 className='header-home rise'>
               <span className='fade-out'>Split the</span>
               <span> Check</span>
-              <span className='fade-in'>/ Split</span>
+              <span className='fade-in'> / Split</span>
             </h1>
           </header>
           <main className='container flow add-last'>

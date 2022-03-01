@@ -10,3 +10,7 @@
   padding: 0.5rem 1rem;
   text-align: center;
 }
+.btn:hover,
+.btn:focus {
+  transform: scale(1.1);
+}

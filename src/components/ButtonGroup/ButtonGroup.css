@@ -1,4 +1,6 @@
 .btn-group {
-  /* display: flex; */
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
 }

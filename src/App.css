@@ -64,7 +64,6 @@ a {
 a:hover,
 a:focus {
   color: rgb(243, 235, 6);
-  text-decoration: underline;
 }
 
 /*   Utility Classes   */
