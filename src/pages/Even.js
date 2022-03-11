@@ -2,110 +2,109 @@ import Button from "../components/Button/Button";
 import Header from "../components/Header/Header";
 import { useState, useContext } from "react";
 import { Context } from "../Context";
+import Result from "../components/Result/Result";
 
 function Even() {
-  const { checkData, handleChange, resetCheckData } = useContext(Context);
+  const { checkData, handleChange, resetData, resultData, setResultData } =
+    useContext(Context);
 
-  const [splitAmounts, setSplitAmounts] = useState({
-    evenSplit: 0,
-    tip: 0,
-    totalPlusTip: 0,
-  });
-  const result = `The total with ${
-    splitAmounts.tip
-  }% tip is $${splitAmounts.totalPlusTip.toFixed(
-    0
-  )}. The amount each diner owes is: $${splitAmounts.evenSplit.toFixed(0)} .`;
+  const [resultText, setResultText] = useState("");
+  const [errorText, setErrorText] = useState("");
 
-  function calculateSplit(event) {
-    event.preventDefault();
-    let { total, diners, tip } = checkData;
-    if (tip === "") {
-      tip = 0;
-    }
-    const totalPlusTip = total * (tip / 100 + 1);
-
-    setSplitAmounts((prevSplit) => {
-      return {
-        evenSplit: prevSplit.evenSplit + totalPlusTip / diners,
-        tip: tip,
-        totalPlusTip: totalPlusTip,
-      };
-    });
-    return splitAmounts;
-  }
-
-  function resultMessage() {
-    if (!splitAmounts.evenSplit) {
-      return `Enter numbers in all fields. If tip is already included, enter 0 as tip percent.`;
+  // calculate split amount
+  function evenSplit() {
+    let { totalCheck, diners, tipPercent } = checkData;
+    if (totalCheck === 0 || diners === 0) {
+      setErrorText(
+        "Enter numbers in all fields. If tip is already included, enter 0 as tip percent."
+      );
     } else {
-      return result;
+      //populate result data
+      const totalWithTip = totalCheck * (tipPercent / 100 + 1);
+      const evenSplit = totalWithTip / diners;
+
+      setResultData((resultData) => {
+        return {
+          tipPercent: tipPercent,
+          totalWithTip: totalWithTip,
+          dinerAmt: evenSplit,
+        };
+      });
+
+      setResultText(
+        `The total for ${diners} diners with ${tipPercent}% tip is $${totalWithTip.toFixed(
+          0
+        )}. The amount each diner owes is: $${evenSplit.toFixed(0)} .`
+      );
     }
+    return resultText;
   }
 
-  function resetData() {
-    resetCheckData();
-    setSplitAmounts({ tip: 0, totalPlusTip: 0, evenSplit: 0 });
-    // console.log(checkData)
-    return checkData;
-  }
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    evenSplit();
+  };
+  // display form or results
   return (
     <div>
-      <Header></Header>
-
+      <Header />
       <main className='container'>
         <h1>Split Even Steven</h1>
         <p>Split the check evenly among all diners.</p>
-
-        <form onSubmit={calculateSplit}>
-          <div className='checkGrid'>
-            <div className='form_group'>
-              <label>
-                Total Check
-                <input
-                  type='number'
-                  name='total'
-                  onChange={handleChange}
-                  value={checkData.total}
+        {resultData.dinerAmt === 0 ? (
+          <div>
+            <form>
+              <div className='checkGrid'>
+                <div className='flex'>
+                  <label>
+                    Total Check
+                    <input
+                      type='number'
+                      name='totalCheck'
+                      onChange={handleChange}
+                      value={checkData.totalCheck}
+                    />
+                  </label>
+                </div>
+                <div className='flex'>
+                  <label>
+                    Diners
+                    <input
+                      type='number'
+                      name='diners'
+                      onChange={handleChange}
+                      value={checkData.diners}
+                    />
+                  </label>
+                </div>
+                <div className='flex'>
+                  <label>
+                    Tip %
+                    <input
+                      type='number'
+                      name='tipPercent'
+                      onChange={handleChange}
+                      value={checkData.tipPercent}
+                    />
+                  </label>
+                </div>
+              </div>
+              <div id='calculate'>
+                <Button
+                  theme='btn'
+                  onClick={handleSubmit}
+                  value='Calculate Split'
                 />
-              </label>
-            </div>
-            <div className='form_group'>
-              <label>
-                Diners
-                <input
-                  type='number'
-                  name='diners'
-                  onChange={handleChange}
-                  value={checkData.diners}
-                />
-              </label>
-            </div>
-            <div className='form_group'>
-              <label>
-                Tip %
-                <input
-                  type='number'
-                  name='tip'
-                  onChange={handleChange}
-                  value={checkData.tip}
-                />
-              </label>
+              </div>
+            </form>
+            <div className='message'>{errorText}</div>
+            <div>
+              <Button theme='reset' onClick={resetData} value='Reset' />
             </div>
           </div>
-          <div id='calculate'>
-            <Button
-              theme='btn'
-              onClick={calculateSplit}
-              value='Calculate Split'
-            />
-          </div>
-        </form>
-        <div className='message'>{resultMessage()}</div>
-        <div>
-          <Button theme='reset' onClick={resetData} value='Reset' />
-        </div>
+        ) : (
+          <Result result={resultText}></Result>
+        )}
       </main>
     </div>
   );

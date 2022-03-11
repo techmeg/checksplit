@@ -1,6 +1,6 @@
 :root {
   --color-primary: #61dafb;
-  --color-bg: darkblue;
+  --color-bg: rgb(0, 0, 139);
   --color-text: blanchedalmond;
   --color-accent: orange;
   --radius: 8px;
@@ -25,7 +25,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  max-width: 450px;
   margin-inline: auto;
   padding-inline: clamp(1rem, 6vw, 1.5rem);
 }
@@ -91,7 +91,7 @@ form,
   place-content: center; */
 }
 
-.form_group {
+.flex {
   display: flex;
   flex-direction: column;
   justify-content: center;
