@@ -1,0 +1,25 @@
+.result {
+  background: rgba(249, 144, 15, 0.797);
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.688) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.818) 0px 0px 0px 1px;
+  color: var(--color-bg);
+  font-size: 1.5rem;
+  margin: auto;
+  margin-bottom: 2rem;
+  padding: 3rem;
+  position: relative;
+  width: 80%;
+}
+
+.result::after {
+  content: "";
+  position: absolute;
+  background: transparent;
+  border-radius: 8px;
+  border: 1rem solid rgba(240, 165, 72, 0.996);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
