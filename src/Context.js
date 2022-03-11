@@ -17,10 +17,10 @@ function ContextProvider({ children }) {
     tipPercent: 0,
     totalWithTip: 0,
     dinerAmt: 0,
-    kidsAmt: 0,
-    adultAmt: 0,
-    driverAmt: 0,
-    drinkerAmt: 0,
+    kidshare: 0,
+    adultshare: 0,
+    driverAmount: 0,
+    drinkerAmount: 0,
   });
 
   function handleChange(event) {
@@ -43,13 +43,13 @@ function ContextProvider({ children }) {
       barBill: 0,
     });
     setResultData({
-      tipPercent: "",
+      tipPercent: 0,
       totalWithTip: 0,
       dinerAmt: 0,
-      kidsAmt: 0,
-      adultAmt: 0,
-      driverAmt: 0,
-      drinkerAmt: 0,
+      kidshare: 0,
+      adultshare: 0,
+      driverAmount: 0,
+      drinkerAmount: 0,
     });
   }
 

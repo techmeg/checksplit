@@ -2,7 +2,6 @@ import Button from "../components/Button/Button";
 import Header from "../components/Header/Header";
 import { useState, useContext } from "react";
 import { Context } from "../Context";
-import { Link } from "react-router-dom";
 import Result from "../components/Result/Result";
 
 function Even() {
@@ -33,9 +32,7 @@ function Even() {
       });
 
       setResultText(
-        `The total for ${diners} diners with ${
-          resultData.tipPercent
-        }% tip is $${totalWithTip.toFixed(
+        `The total for ${diners} diners with ${tipPercent}% tip is $${totalWithTip.toFixed(
           0
         )}. The amount each diner owes is: $${evenSplit.toFixed(0)} .`
       );
@@ -95,10 +92,9 @@ function Even() {
               <div id='calculate'>
                 <Button
                   theme='btn'
-                  type='submit'
                   onClick={handleSubmit}
                   value='Calculate Split'
-                ></Button>
+                />
               </div>
             </form>
             <div className='message'>{errorText}</div>
@@ -107,7 +103,7 @@ function Even() {
             </div>
           </div>
         ) : (
-          <Result splitName='Even Steven' />
+          <Result result={resultText}></Result>
         )}
       </main>
     </div>
